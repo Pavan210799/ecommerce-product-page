@@ -3,16 +3,16 @@ import { FaStar, FaRegStar, FaUserCircle, FaCommentDots } from "react-icons/fa";
 
 function Reviews({ product }) {
     return (
-        <div className="bg-white rounded-2xl shadow-md p-5 md:p-8">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-md p-5 md:p-8 transition-colors duration-300">
 
-            <h3 className="flex items-center gap-2 text-lg font-semibold text-slate-900">
+            <h3 className="flex items-center gap-2 text-lg font-semibold text-slate-900 dark:text-white">
                 <FaCommentDots className="text-blue-600" />
                 Customer Reviews
             </h3>
-            <div className="mt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-6">
+            <div className="mt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-700 pb-6">
 
                 <div>
-                    <p className="text-4xl font-bold text-slate-900">
+                    <p className="text-4xl font-bold text-slate-900 dark:text-white">
                         {product.rating.average}
                     </p>
 
@@ -36,9 +36,9 @@ function Reviews({ product }) {
                 </div>
 
                 <div className="text-right">
-                    <p className="text-slate-500">
+                    <p className="text-slate-500 dark:text-slate-400">
                         Based on{" "}
-                        <span className="font-semibold text-slate-900">
+                        <span className="font-semibold text-slate-900 dark:text-white">
                             {product.rating.totalReviews}
                         </span>{" "}
                         Reviews
@@ -52,22 +52,22 @@ function Reviews({ product }) {
 
                     <div
                         key={review.id}
-                        className="border-b border-slate-200 pb-6 last:border-b-0 last:pb-0"
+                        className="border-b border-slate-200 dark:border-slate-700 pb-6 last:border-b-0 last:pb-0"
                     >
 
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
 
                             <div className="flex items-center gap-3">
 
-                                <FaUserCircle className="text-3xl text-slate-400" />
+                                <FaUserCircle className="text-3xl text-slate-400 dark:text-slate-500" />
 
                                 <div>
 
-                                    <p className="font-semibold text-slate-900">
+                                    <p className="font-semibold text-slate-900 dark:text-white">
                                         {review.name}
                                     </p>
 
-                                    <p className="text-sm text-slate-500">
+                                    <p className="text-sm text-slate-500 dark:text-slate-400">
                                         {review.date}
                                     </p>
 
@@ -93,7 +93,7 @@ function Reviews({ product }) {
 
                         </div>
 
-                        <p className="mt-4 text-slate-600 leading-7 text-justify">
+                        <p className="mt-4 text-slate-600 dark:text-slate-400 leading-7 text-justify">
                             {review.comment}
                         </p>
 

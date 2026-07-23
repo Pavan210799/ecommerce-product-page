@@ -39,8 +39,8 @@ function DeliveryInfo({ product }) {
     }
 
     return (
-        <div className="bg-white rounded-2xl shadow-md p-5 md:p-8">
-            <h3 className="flex items-center gap-2 text-lg font-semibold text-slate-900">
+        <div className="bg-white dark:bg-slate-900 transition-colors duration-300 rounded-2xl shadow-md p-5 md:p-8">
+            <h3 className="flex items-center gap-2 text-lg font-semibold text-slate-900 dark:text-white">
                 <FaTruck className="text-blue-600" />
                 Delivery
             </h3>
@@ -48,35 +48,35 @@ function DeliveryInfo({ product }) {
             <div className="mt-4 space-y-3">
 
                 <p>
-                    <span className="font-semibold">
+                    <span className="font-semibold text-slate-900 dark:text-white">
                         {product.delivery.shipping}
                     </span>
                 </p>
 
-                <p className="text-slate-600">
+                <p className="text-slate-600 dark:text-slate-400">
                     Estimated Delivery:
-                    <span className="ml-2 font-semibold text-slate-900">
+                    <span className="ml-2 font-semibold text-slate-900 dark:text-white">
                         {deliveryDate || "--"}
                     </span>
                 </p>
 
-                <p className="text-slate-600">
+                <p className="text-slate-600 dark:text-slate-400">
                     Return Policy:
-                    <span className="ml-2 font-semibold text-slate-900">
+                    <span className="ml-2 font-semibold text-slate-900 dark:text-white">
                         {product.delivery.returns}
                     </span>
                 </p>
 
-                <p className="text-slate-600">
+                <p className="text-slate-600 dark:text-slate-400">
                     Cash on Delivery:
                     <span className="ml-2 font-semibold text-emerald-600">
                         {product.delivery.cod ? "Available" : "Not Available"}
                     </span>
                 </p>
-                <hr className="my-6 border-slate-200" />
+                <hr className="my-6 border-slate-200 dark:border-slate-700" />
                 <div className="mt-6">
                     <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-                        <h4 className="text-sm font-semibold text-slate-900">
+                        <h4 className="text-sm font-semibold text-slate-900 dark:text-white">
                             Availability :
                         </h4>
 
@@ -102,7 +102,7 @@ function DeliveryInfo({ product }) {
                                 setPincode(e.target.value)
                                 setDeliveryStatus(null);
                             }}
-                            className="flex-1 w-full h-12 rounded-lg border border-slate-300 px-4 py-3 leading-none appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="flex-1 w-full h-12 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 px-4 py-3 leading-none appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300"
                         />
                         <button
                             onClick={handleCheckDelivery}

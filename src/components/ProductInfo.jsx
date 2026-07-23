@@ -1,4 +1,5 @@
-import { FaStar, FaRegHeart, FaHeart, FaShoppingCart, FaBolt } from "react-icons/fa";
+import { FaStar, FaRegHeart, FaHeart, FaShoppingCart, FaBolt, FaShareAlt } from "react-icons/fa";
+import { motion } from "framer-motion";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
@@ -13,14 +14,16 @@ function ProductInfo({ product }) {
     const [quantity, setQuantity] = useState(1);
     const [isWishlisted, setIsWishlisted] = useState(false);
 
+    const [cartAnimating, setCartAnimating] = useState(false);
+
     return (
-        <div className="bg-white rounded-2xl shadow-md p-8">
-            <h1 className="text-3xl font-bold text-slate-900 leading-tight">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-md p-8 transition-colors duration-300">
+            <h1 className="text-3xl font-bold text-slate-900 dark:text-white leading-tight">
                 {product.title}
             </h1>
-            <p className="mt-4 text-slate-500">
+            <p className="mt-4 text-slate-500 dark:text-slate-400">
                 by
-                <span className="ml-2 font-semibold text-slate-800">
+                <span className="ml-2 font-semibold text-slate-800 dark:text-slate-200">
                     {product.brand}
                 </span>
             </p>
@@ -33,41 +36,64 @@ function ProductInfo({ product }) {
                         {product.rating.average}
                     </span>
 
-                    <span className="text-slate-500">
+                    <span className="text-slate-500 dark:text-slate-400">
                         ({product.rating.totalReviews} Reviews)
                     </span>
                 </div>
+                <div className="flex gap-3">
+                    <button
+                        onClick={() => {
+                            setIsWishlisted(!isWishlisted);
 
-                <button
-                    onClick={() => {
-                        setIsWishlisted(!isWishlisted);
+                            if (!isWishlisted) {
+                                toast.success("Added to Wishlist");
+                            } else {
+                                toast.info("Removed from Wishlist");
+                            }
+                        }}
+                        className={`flex items-center gap-2 px-4 py-2 rounded-full border transition-all duration-300 ${
+                            isWishlisted
+                                ? "bg-red-50 text-red-500 border-red-300"
+                                : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-300 dark:border-slate-700 hover:border-red-300 hover:text-red-500"
+                        }`}
+                    >
+                        {isWishlisted ? <FaHeart /> : <FaRegHeart />}
 
-                        if (!isWishlisted) {
-                            toast.success("Added to Wishlist");
-                        } else {
-                            toast.info("Removed from Wishlist");
-                        }
-                    }}
-                    className={`flex items-center gap-2 px-4 py-2 rounded-full border transition-all duration-300 ${
-                        isWishlisted
-                            ? "bg-red-50 text-red-500 border-red-300"
-                            : "bg-white text-slate-600 border-slate-300 hover:border-red-300 hover:text-red-500"
-                    }`}
-                >
-                    {isWishlisted ? <FaHeart /> : <FaRegHeart />}
+                        <span>
+                            {isWishlisted ? "Wishlisted" : "Wishlist"}
+                        </span>
+                    </button>
 
-                    <span>
-                        {isWishlisted ? "Wishlisted" : "Wishlist"}
-                    </span>
-                </button>
+                    <button
+                        onClick={async () => {
+                            if (navigator.share) {
+                            try {
+                                await navigator.share({
+                                title: product.title,
+                                text: `Check out ${product.title}`,
+                                url: window.location.href,
+                                });
+                            } catch (err) {
+                            }
+                            } else {
+                            await navigator.clipboard.writeText(window.location.href);
+                            toast.success("Link copied to clipboard");
+                            }
+                        }}
+                        className="flex items-center gap-2 px-4 py-2 rounded-full border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:border-blue-300 hover:text-blue-600 transition-all duration-300"
+                        >
+                        <FaShareAlt />    
+                    </button>
+                </div>  
+                
 
             </div>
             <div className="mt-6 flex flex-wrap items-center gap-3">
-                <span className="text-4xl font-bold text-slate-900">
+                <span className="text-4xl font-bold text-slate-900 dark:text-white">
                     ₹{selectedPackage.currentPrice.toLocaleString()}
                 </span>
 
-                <span className="text-xl text-slate-400 line-through">
+                <span className="text-xl text-slate-400 dark:text-slate-500 line-through">
                     ₹{selectedPackage.originalPrice.toLocaleString()}
                 </span>
 
@@ -75,9 +101,9 @@ function ProductInfo({ product }) {
                     {selectedPackage.discount}% OFF
                 </span>
             </div>
-            <hr className="my-6 border-slate-200" />
+            <hr className="my-6 border-slate-200 dark:border-slate-700" />
             <div className="mt-6">
-                <h3 className="text-lg font-semibold text-slate-900">
+                <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
                     Color
                 </h3>
                 <div className="mt-4 flex items-center gap-5">
@@ -104,13 +130,13 @@ function ProductInfo({ product }) {
                 </div>
                 <p className="mt-2 text-slate-500">
                     Selected:
-                    <span className="ml-2 font-semibold text-slate-900">
+                    <span className="ml-2 font-semibold text-slate-900 dark:text-white">
                         {selectedColor.name}
                     </span>
                 </p>
             </div>
             <div className="mt-8">
-                <h3 className="text-lg font-semibold text-slate-900">
+                <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
                     Package
                 </h3>
                 <div className="mt-4 flex flex-col sm:flex-row gap-4">
@@ -122,7 +148,7 @@ function ProductInfo({ product }) {
                                 ${
                                     selectedPackage.id === pkg.id
                                         ? "border-blue-500 bg-blue-600 text-white"
-                                        : "border-gray bg-white text-dark"
+                                        : "border-slate-300 bg-white text-slate-900 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
                                 }
                                 ${
                                     !pkg.available
@@ -139,14 +165,14 @@ function ProductInfo({ product }) {
                 <div className="mt-4 space-y-2">
                     <p className="text-slate-500">
                         Selected Package:
-                        <span className="ml-2 font-semibold text-slate-900">
+                        <span className="ml-2 font-semibold text-slate-900 dark:text-white">
                             {selectedPackage.name}
                         </span>
                     </p>
 
                     <p className="text-slate-500">
                         Includes:
-                        <span className="ml-2 font-semibold text-slate-900">
+                        <span className="ml-2 font-semibold text-slate-900 dark:text-white">
                             {selectedPackage.items}
                         </span>
                     </p>
@@ -155,11 +181,11 @@ function ProductInfo({ product }) {
             <hr className="my-6 border-slate-200" />
             <div className="mt-6 space-y-6">
                 <div className="flex items-center gap-10">
-                    <h3 className="text-lg font-semibold text-slate-900">
+                    <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
                         Quantity
                     </h3>
 
-                    <div className="flex items-center border border-slate-300 rounded-lg overflow-hidden">
+                    <div className="flex items-center border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 rounded-lg overflow-hidden transition-colors duration-300">
 
                         <button
                             onClick={() => {
@@ -167,18 +193,18 @@ function ProductInfo({ product }) {
                                     setQuantity((prev) => prev - 1);
                                 }
                             }}
-                            className="w-10 h-10 hover:bg-slate-100 transition-colors text-lg font-semibold"
+                            className="w-10 h-10 text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-lg font-semibold"
                         >
                             −
                         </button>
 
-                        <span className="w-10 h-10 flex items-center justify-center border-x border-slate-300 font-semibold text-slate-900">
+                        <span className="w-10 h-10 flex items-center justify-center border-x border-slate-300 dark:border-slate-700 font-semibold text-slate-900 dark:text-white transition-colors duration-300">
                             {quantity}
                         </span>
 
                         <button
                             onClick={() => setQuantity((prev) => prev + 1)}
-                            className="w-10 h-10 hover:bg-slate-100 transition-colors text-lg font-semibold"
+                            className="w-10 h-10 text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-lg font-semibold"
                         >
                             +
                         </button>
@@ -188,17 +214,38 @@ function ProductInfo({ product }) {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
-                    <button
-                        onClick={() =>
+                    <motion.button
+                        whileHover={{ scale: 1.03 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => {
+                            setCartAnimating(true);
+
                             toast.success(
                                 `${quantity} × ${product.brand} ${product.category} (${selectedPackage.name}) added to cart`
-                            )
-                        }
+                            );
+
+                            setTimeout(() => {
+                                setCartAnimating(false);
+                            }, 300);
+                        }}
                         className="group flex items-center justify-center gap-2 h-12 rounded-xl border-2 border-blue-600 text-blue-600 font-semibold hover:bg-blue-50 transition-all duration-300"
                     >
-                        <FaShoppingCart className="transition-transform duration-300 group-hover:scale-110" />
+                        <motion.div
+                            animate={
+                                cartAnimating
+                                    ? {
+                                        y: [0, -8, 0],
+                                        rotate: [0, -15, 0],
+                                    }
+                                    : {}
+                            }
+                            transition={{ duration: 0.3 }}
+                        >
+                            <FaShoppingCart />
+                        </motion.div>
+
                         <span>Add to Cart</span>
-                    </button>
+                    </motion.button>
 
                     <button
                         onClick={() =>

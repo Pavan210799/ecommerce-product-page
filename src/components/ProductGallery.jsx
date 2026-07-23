@@ -14,14 +14,14 @@ function ProductGallery({ images }) {
                 />
             </div>
 
-            <div className="mt-6 flex justify-center gap-3 overflow-x-auto py-2 px-2">
+            <div className="mt-6 flex justify-start md:justify-center gap-3 overflow-x-auto px-4 py-2">
                 {images.map((image, index) => (
                     <img
                         key={index}
                         src={image}
                         alt={`Thumbnail ${index + 1}`}
                         onClick={() => setSelectedImage(image)}
-                        className={`flex-shrink-0 w-20 h-20 sm:w-24 sm:h-24 object-contain rounded-lg cursor-pointer border-2 transition-all duration-300 hover:scale-105 ${
+                        className={`flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 p-1 object-contain rounded-lg cursor-pointer border-2 transition-all duration-300 hover:scale-105 ${
                             selectedImage === image
                                 ? "border-blue-600 shadow-lg"
                                 : "border-gray-200"

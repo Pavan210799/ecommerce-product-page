@@ -8,6 +8,7 @@ function Offers({ product }) {
     const [couponCode, setCouponCode] = useState("");
     const [couponApplied, setCouponApplied] = useState(false);
     const handleApplyCoupon = () => {
+
         if (couponCode.trim().toUpperCase() === "SONY500") {
             confetti({
                 particleCount: 120,

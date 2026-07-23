@@ -24,7 +24,7 @@ function ProductInfo({ product }) {
                     {product.brand}
                 </span>
             </p>
-            <div className="mt-5 flex items-center justify-between">
+            <div className="mt-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
 
                 <div className="flex items-center gap-2">
                     <FaStar className="text-yellow-400" />
@@ -62,7 +62,7 @@ function ProductInfo({ product }) {
                 </button>
 
             </div>
-            <div className="mt-6 flex items-center gap-4">
+            <div className="mt-6 flex flex-wrap items-center gap-3">
                 <span className="text-4xl font-bold text-slate-900">
                     ₹{selectedPackage.currentPrice.toLocaleString()}
                 </span>
@@ -113,12 +113,12 @@ function ProductInfo({ product }) {
                 <h3 className="text-lg font-semibold text-slate-900">
                     Package
                 </h3>
-                <div className="mt-4 flex gap-4">
+                <div className="mt-4 flex flex-col sm:flex-row gap-4">
                     {product.packages.map((pkg) => (
                         <button
                             key={pkg.id}
                             onClick={() =>pkg.available && setSelectedPackage(pkg)}
-                            className={`rounded-xl px-5 py-3 border-2 min-w-[180px]
+                            className={`rounded-xl px-5 py-3 border-2 w-full sm:flex-1 transition-all duration-300
                                 ${
                                     selectedPackage.id === pkg.id
                                         ? "border-blue-500 bg-blue-600 text-white"
@@ -186,7 +186,7 @@ function ProductInfo({ product }) {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
                     <button
                         onClick={() =>

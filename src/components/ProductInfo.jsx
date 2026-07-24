@@ -4,7 +4,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 
 
-function ProductInfo({ product }) {
+function ProductInfo({ product, addToCart, addToWishlist,removeFromWishlist, wishlistItems, }) {
     const [selectedColor, setSelectedColor] = useState(
         product.colors.find((color) => color.available)
     );
@@ -12,7 +12,9 @@ function ProductInfo({ product }) {
         product.packages.find((pkg) => pkg.available)
     );
     const [quantity, setQuantity] = useState(1);
-    const [isWishlisted, setIsWishlisted] = useState(false);
+    const isWishlisted = wishlistItems.some(
+        (item) => item.id === product.id
+    );
 
     const [cartAnimating, setCartAnimating] = useState(false);
 
@@ -43,12 +45,18 @@ function ProductInfo({ product }) {
                 <div className="flex gap-3">
                     <button
                         onClick={() => {
-                            setIsWishlisted(!isWishlisted);
-
-                            if (!isWishlisted) {
-                                toast.success("Added to Wishlist");
-                            } else {
+                            if (isWishlisted) {
+                                removeFromWishlist(product.id);
                                 toast.info("Removed from Wishlist");
+                            } else {
+                                addToWishlist({
+                                    id: product.id,
+                                    title: product.title,
+                                    image: product.images[0],
+                                    price: selectedPackage.currentPrice,
+                                });
+
+                                toast.success("Added to Wishlist");
                             }
                         }}
                         className={`flex items-center gap-2 px-4 py-2 rounded-full border transition-all duration-300 ${
@@ -219,6 +227,19 @@ function ProductInfo({ product }) {
                         whileTap={{ scale: 0.95 }}
                         onClick={() => {
                             setCartAnimating(true);
+
+                            addToCart({
+                                id: product.id,
+                                title: product.title,
+                                image: product.images[0],
+                                brand: product.brand,
+                                price: selectedPackage.currentPrice,
+                                quantity,
+                                color: selectedColor.name,
+                                colorId: selectedColor.id,
+                                package: selectedPackage.name,
+                                packageId: selectedPackage.id,
+                            });
 
                             toast.success(
                                 `${quantity} × ${product.brand} ${product.category} (${selectedPackage.name}) added to cart`

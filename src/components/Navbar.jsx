@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   FiSearch,
   FiHeart,
@@ -9,47 +10,61 @@ import {
 } from "react-icons/fi";
 
 import { FaMoon, FaSun } from "react-icons/fa";
-
-function Navbar({ darkMode, setDarkMode }) {
+function Navbar({ darkMode, setDarkMode, cartItems, wishlistItems, }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const cartCount = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0
+);
+    const wishlistCount = wishlistItems.length;
 
   const navItems = [
-    "Home",
-    "Headphones",
-    "Earbuds",
-    "Speakers",
-    "Support",
-  ];
+    {
+        name: "Headphones",
+        path: "/headphones",
+    },
+    {
+        name: "Earbuds",
+        path: "/earbuds",
+    },
+    {
+        name: "Support",
+        path: "/support",
+    },
+];
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-sm">
       <div className="max-w-7xl mx-auto h-18 px-4 flex items-center justify-between">
-        <div className="flex flex-col leading-none cursor-pointer">
+        <Link
+            to="/"
+            className="flex flex-col leading-none"
+        >
             <span className="text-2xl font-black tracking-[0.25em] text-slate-900 dark:text-white">
                 SONY
             </span>
             <span className="mt-1 text-[10px] uppercase tracking-[0.35em] text-slate-500 dark:text-slate-300">
                 Official Store
             </span>
-        </div>
+        </Link>
         <nav className="hidden lg:flex items-center gap-8 font-medium">
           {navItems.map((item) => (
-            <a
-              key={item}
-              href="#"
-              className="relative text-slate-800 dark:text-slate-100 hover:text-red-600 dark:hover:text-red-500
-                after:absolute
-                after:left-0
-                after:-bottom-1
-                after:h-0.5
-                after:w-0
-                after:bg-red-600
-                after:transition-all
-                hover:after:w-full transition-colors duration-300"
-            >
-              {item}
-            </a>
-          ))}
+                <Link
+                    key={item.name}
+                    to={item.path}
+                    className="relative text-slate-800 dark:text-slate-100 hover:text-red-600 dark:hover:text-red-500
+                    after:absolute
+                    after:left-0
+                    after:-bottom-1
+                    after:h-0.5
+                    after:w-0
+                    after:bg-red-600
+                    after:transition-all
+                    hover:after:w-full transition-colors duration-300"
+                >
+                    {item.name}
+                </Link>
+            ))}
         </nav>
 
         <div className="hidden lg:flex items-center relative w-60 md:ml-5">
@@ -64,22 +79,32 @@ function Navbar({ darkMode, setDarkMode }) {
 
         <div className="hidden lg:flex items-center gap-4 text-lg">
 
-            <div className="relative w-10 h-10 flex items-center justify-center cursor-pointer">
+            <Link
+                to="/wishlist"
+                className="relative w-10 h-10 flex items-center justify-center cursor-pointer"
+            >
                 <FiHeart className="text-xl text-slate-800 dark:text-slate-100 hover:text-red-600 dark:hover:text-red-500 transition" />
-                <span className="absolute -top-2 -right-2 bg-red-600 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
-                0
-                </span>
-            </div>
 
-            <div className="relative w-10 h-10 flex items-center justify-center cursor-pointer">
+                <span className="absolute -top-2 -right-2 bg-red-600 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
+                    {wishlistCount}
+                </span>
+            </Link>
+
+            <Link
+                to="/cart"
+                className="relative w-10 h-10 flex items-center justify-center cursor-pointer"
+            >
                 <FiShoppingCart className="text-xl text-slate-800 dark:text-slate-100 hover:text-red-600 dark:hover:text-red-500 transition" />
                 <span className="absolute -top-2 -right-2 bg-red-600 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
-                0
+                {cartCount}
                 </span>
-            </div>
-            <div className="w-10 h-10 flex items-center justify-center cursor-pointer">
+            </Link>
+            <Link
+                to="/profile"
+                className="w-10 h-10 flex items-center justify-center"
+            >
                 <FiUser className="text-xl text-slate-800 dark:text-slate-100 hover:text-red-600 dark:hover:text-red-500 transition" />
-            </div>
+            </Link>
 
             <button
                 onClick={() => setDarkMode((prev) => !prev)}
@@ -117,27 +142,44 @@ function Navbar({ darkMode, setDarkMode }) {
 
             <div className="flex flex-col gap-4 font-medium text-slate-800 dark:text-slate-100">
               {navItems.map((item) => (
-                <a  key={item} href="#"
-                    className="hover:text-red-600 dark:hover:text-red-500 transition-colors duration-300"
+                <Link
+                    key={item.name}
+                    to={item.path}
+                    className="relative text-slate-800 dark:text-slate-100 hover:text-red-600 dark:hover:text-red-500
+                    after:absolute
+                    after:left-0
+                    after:-bottom-1
+                    after:h-0.5
+                    after:w-0
+                    after:bg-red-600
+                    after:transition-all
+                    hover:after:w-full transition-colors duration-300"
                 >
-                  {item}
-                </a>
-              ))}
+                    {item.name}
+                </Link>
+            ))}
             </div>
 
             <div className="flex items-center gap-5 mt-6">
-                <div className="relative w-10 h-10 flex items-center justify-center cursor-pointer">
+                <Link
+                    to="/wishlist"
+                    className="relative w-10 h-10 flex items-center justify-center cursor-pointer"
+                >
                     <FiHeart className="text-xl text-slate-800 dark:text-slate-100 hover:text-red-600 dark:hover:text-red-500 transition" />
-                    <span className="absolute top-0 right-0 bg-red-600 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
-                        0
+
+                    <span className="absolute -top-2 -right-2 bg-red-600 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
+                        {wishlistCount}
                     </span>
-                </div>
-                <div className="relative w-10 h-10 flex items-center justify-center cursor-pointer">
+                </Link>
+                <Link
+                    to="/cart"
+                    className="relative w-10 h-10 flex items-center justify-center cursor-pointer"
+                >
                     <FiShoppingCart className="text-xl text-slate-800 dark:text-slate-100 hover:text-red-600 dark:hover:text-red-500 transition" />
                     <span className="absolute top-0 right-0 bg-red-600 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
-                        0
+                        {cartCount}
                     </span>
-                </div>
+                </Link>
                 <div className="w-10 h-10 flex items-center justify-center cursor-pointer">
                     <FiUser className="text-xl text-slate-800 dark:text-slate-100 hover:text-red-600 dark:hover:text-red-500 transition" />
                 </div>

@@ -1,19 +1,19 @@
-import front from "../assets/images/sony/sony-front.jpg";
-import side from "../assets/images/sony/sony-side.jpg";
-import folded from "../assets/images/sony/sony-folded.jpg";
-import cover from "../assets/images/sony/sony-cover.jpg";
-import lifestyle from "../assets/images/sony/sony-lifestyle.jpg";
-
 import ch720n1 from "../assets/images/related/ch720n-1.jpg";
+import ch720n2 from "../assets/images/related/ch720n-2.jpg";
+import ch720n3 from "../assets/images/related/ch720n-3.jpg";
+import ch720n4 from "../assets/images/related/ch720n-4.jpg";
+import ch720n5 from "../assets/images/related/ch720n-5.jpg";
+
+import front from "../assets/images/sony/sony-front.jpg";
+
 import ultWear1 from "../assets/images/related/ultwear-1.jpg";
 import xb910n1 from "../assets/images/related/xb910n-1.jpg";
 import wf1000xm51 from "../assets/images/related/wf1000xm5-1.jpg";
 
+const product2 = {
+  id: 2,
 
-const product = {
-  id: 1,
-
-  title: "Sony WH-1000XM6 Wireless Noise-Cancelling Headphones",
+  title: "Sony WH-CH720N Wireless Noise-Cancelling Headphones",
 
   brand: "Sony",
 
@@ -23,19 +23,19 @@ const product = {
   },
 
   rating: {
-        average: 4.8,
-        totalReviews: 243,
+        average: 4.5,
+        totalReviews: 178,
   },
 
   description:
-  "Experience premium sound with the Sony WH-1000XM6 Wireless Noise-Cancelling Headphones. Featuring industry-leading noise cancellation, crystal-clear audio, up to 30 hours of battery life, and all-day comfort, these headphones are designed to deliver an immersive listening experience whether you're travelling, working, or relaxing.",
+  "Enjoy immersive sound with the Sony WH-CH720N Wireless Noise-Cancelling Headphones. Featuring Dual Noise Sensor technology, up to 35 hours of battery life, lightweight comfort, and crystal-clear hands-free calling, these headphones are perfect for everyday listening.",
 
   images: [
-    front,
-    side,
-    folded,
-    cover,
-    lifestyle,
+    ch720n1,
+    ch720n2,
+    ch720n3,
+    ch720n4,
+    ch720n5,
   ],
 
   colors: [
@@ -60,33 +60,33 @@ const product = {
   ],
   packages: [
     {
-      id: 1,
-      name: "Standard",
-      available: true,
-      items : "Headphones only",
-      currentPrice: 34990,
-      originalPrice: 39990,
-      discount: 13
+        id: 1,
+        name: "Standard",
+        available: true,
+        items: "Headphones only",
+        currentPrice: 9990,
+        originalPrice: 12990,
+        discount: 23,
     },
     {
-      id: 2,
-      name: "Premium Bundle",
-      available: true,
-      items : "Headphones + Case",
-      currentPrice: 37990,
-      originalPrice: 42990,
-      discount: 12
+        id: 2,
+        name: "Premium Bundle",
+        available: true,
+        items: "Headphones + Carry Case",
+        currentPrice: 11990,
+        originalPrice: 14990,
+        discount: 20,
     },
-  ],
+],
 
   specifications: [
-  { label: "Connectivity", value: "Bluetooth 5.3" },
-  { label: "Battery Life", value: "Up to 30 Hours" },
-  { label: "Noise Cancellation", value: "Active Noise Cancellation" },
-  { label: "Charging", value: "USB-C Fast Charging" },
-  { label: "Weight", value: "254 g" },
-  { label: "Warranty", value: "1 Year Manufacturer Warranty" },
-  ],
+    { label: "Connectivity", value: "Bluetooth 5.2" },
+    { label: "Battery Life", value: "Up to 35 Hours" },
+    { label: "Noise Cancellation", value: "Dual Noise Sensor" },
+    { label: "Charging", value: "USB-C Fast Charging" },
+    { label: "Weight", value: "192 g" },
+    { label: "Warranty", value: "1 Year Manufacturer Warranty" },
+],
 
   delivery: {
     shipping: "Free Delivery",
@@ -143,37 +143,36 @@ const product = {
       },
   ],
   relatedProducts: [
-      {
-          id: 2,
-          name: "Sony WH-CH720N",
-          image: ch720n1,
-          rating: 4.5,
-          price: 9990,
-      },
-      {
-          id: 3,
-          name: "Sony ULT Wear",
-          image: ultWear1,
-          rating: 4.7,
-          price: 16990,
-      },
-      {
-          id: 4,
-          name: "Sony WH-XB910N",
-          image: xb910n1,
-          rating: 4.6,
-          price: 13990,
-      },
-      {
-          id: 5,
-          name: "Sony WF-1000XM5",
-          image: wf1000xm51,
-          rating: 4.9,
-          price: 21990,
-      },
-
-  ],
+    {
+        id: 1,
+        name: "Sony WH-1000XM6",
+        image: front,
+        rating: 4.8,
+        price: 34990,
+    },
+    {
+        id: 3,
+        name: "Sony ULT Wear",
+        image: ultWear1,
+        rating: 4.7,
+        price: 16990,
+    },
+    {
+        id: 4,
+        name: "Sony WH-XB910N",
+        image: xb910n1,
+        rating: 4.6,
+        price: 13990,
+    },
+    {
+        id: 5,
+        name: "Sony WF-1000XM5",
+        image: wf1000xm51,
+        rating: 4.9,
+        price: 21990,
+    },
+],
 
 };
 
-export default product;
+export default product2;

@@ -1,4 +1,5 @@
 import { FaHeadphones, FaStar } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function RelatedProducts({ product }) {
     return (
@@ -13,8 +14,9 @@ function RelatedProducts({ product }) {
 
                 {product.relatedProducts.map((item) => (
 
-                    <div
+                    <Link
                         key={item.id}
+                        to={`/product/${item.id}`}
                         className="min-w-[250px] flex-shrink-0 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-5 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
                     >
 
@@ -42,7 +44,7 @@ function RelatedProducts({ product }) {
                             ₹{item.price.toLocaleString()}
                         </p>
 
-                    </div>
+                    </Link>
 
                 ))}
 

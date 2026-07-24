@@ -1,4 +1,10 @@
-import product from "../data/product";
+import product1 from "../data/product";
+import product2 from "../data/product2";
+import product3 from "../data/product3";
+import product4 from "../data/product4";
+import product5 from "../data/product5";
+
+import { useParams } from "react-router-dom";
 import ProductGallery from "../components/ProductGallery";
 import ProductInfo from "../components/ProductInfo";
 import DeliveryInfo from "../components/DeliveryInfo";
@@ -9,18 +15,40 @@ import Reviews from "../components/Reviews";
 import RelatedProducts from "../components/RelatedProducts";
 import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
-import Breadcrumb from "../components/Breadcrumb";
 import Footer from "../components/Footer";
+import { useEffect } from "react";
 
-function ProductPage({ darkMode, setDarkMode }) {
+
+function ProductPage({ darkMode, setDarkMode, addToCart, cartItems,addToWishlist,removeFromWishlist, wishlistItems,}) {
+  const { id } = useParams();
+
+  const products = {
+    1: product1,
+    2: product2,
+    3: product3,
+    4: product4,
+    5: product5,
+  };
+
+  const product = products[id] || product1;
+  useEffect(() => {
+      window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+      });
+  }, [id]);
+
   return (
     <> 
-      <Navbar darkMode={darkMode} 
+      <Navbar 
+        darkMode={darkMode} 
         setDarkMode={setDarkMode} 
+        cartItems={cartItems}
+        wishlistItems={wishlistItems}
       />
+
       <main className="min-h-screen bg-slate-100 dark:bg-slate-950 transition-colors duration-300 pt-8 pb-8">
         <div className="max-w-7xl mx-auto px-4">
-          <Breadcrumb />
           <section className="grid grid-cols-1 lg:grid-cols-2 gap-12">
 
             <motion.div
@@ -28,7 +56,9 @@ function ProductPage({ darkMode, setDarkMode }) {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
-              <ProductGallery images={product.images} />
+              <ProductGallery 
+                key={product.id}
+                images={product.images} />
             </motion.div>
 
             <motion.div
@@ -36,7 +66,14 @@ function ProductPage({ darkMode, setDarkMode }) {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
             >
-              <ProductInfo product={product} />
+              <ProductInfo
+                key={product.id} 
+                product={product}
+                addToCart={addToCart}
+                addToWishlist={addToWishlist}
+                removeFromWishlist={removeFromWishlist}
+                wishlistItems={wishlistItems} 
+              />
             </motion.div>
 
             <motion.div

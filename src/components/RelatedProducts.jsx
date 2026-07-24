@@ -15,7 +15,7 @@ function RelatedProducts({ product }) {
 
                     <div
                         key={item.id}
-                        className="min-w-[250px] flex-shrink-0 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-5 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                        className="min-w-[250px] flex-shrink-0 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-5 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
                     >
 
                         <div className="h-44 flex items-center justify-center">

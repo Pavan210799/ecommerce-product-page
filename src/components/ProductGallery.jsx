@@ -30,7 +30,7 @@ function ProductGallery({ images }) {
         <div className="w-full bg-white dark:bg-slate-900 transition-colors duration-300 rounded-2xl shadow-md p-5 md:p-8">
 
             <div
-                className="h-80 sm:h-[450px] lg:h-[632px] rounded-xl overflow-hidden flex items-center justify-center cursor-zoom-in bg-white dark:bg-slate-950 transition-colors duration-300"
+                className="h-80 sm:h-[450px] lg:h-[670px] rounded-xl overflow-hidden flex items-center justify-center cursor-zoom-in bg-white dark:bg-slate-950 transition-colors duration-300"
                 onMouseMove={handleMouseMove}
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}

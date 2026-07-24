@@ -32,20 +32,7 @@ function App() {
 
   return (
     <>
-      <div className="fixed top-5 right-5 z-50">
-        <button
-          onClick={() => setDarkMode(!darkMode)}
-          className="w-12 h-12 rounded-full bg-white dark:bg-slate-800 shadow-lg flex items-center justify-center transition-all duration-300"
-        >
-          {darkMode ? (
-            <FaSun className="text-yellow-400 text-lg" />
-          ) : (
-            <FaMoon className="text-slate-700 text-lg" />
-          )}
-        </button>
-      </div>
-
-      {loading ? <ProductSkeleton /> : <ProductPage />}
+      {loading ? <ProductSkeleton /> : <ProductPage darkMode={darkMode} setDarkMode={setDarkMode}/>}
 
       <ToastContainer
         position="top-right"

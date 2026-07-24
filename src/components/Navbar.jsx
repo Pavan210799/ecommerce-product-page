@@ -95,7 +95,7 @@ function Navbar({ darkMode, setDarkMode }) {
             </div>
 
         <button
-          className="lg:hidden text-2xl"
+          className="lg:hidden text-2xl text-slate-800 dark:text-white hover:text-red-600 dark:hover:text-red-500 transition"
           onClick={() => setMenuOpen(!menuOpen)}
         >
           {menuOpen ? <FiX /> : <FiMenu />}
@@ -107,17 +107,19 @@ function Navbar({ darkMode, setDarkMode }) {
 
           <div className="p-4">
             <div className="relative mb-5">
-              <FiSearch className="absolute left-3 top-3 text-slate-400 shadow-sm focus:shadow-md" />
+              <FiSearch className="absolute left-3 top-3 text-slate-400 dark:text-slate-500" />
 
               <input
                 placeholder="Search..."
-                className="w-full rounded-full border py-2 pl-10 pr-4"
+                className="w-full rounded-full border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 py-2 pl-10 pr-4 outline-none focus:ring-2 focus:ring-red-500 transition"
               />
             </div>
 
-            <div className="flex flex-col gap-4 font-medium">
+            <div className="flex flex-col gap-4 font-medium text-slate-800 dark:text-slate-100">
               {navItems.map((item) => (
-                <a key={item} href="#">
+                <a  key={item} href="#"
+                    className="hover:text-red-600 dark:hover:text-red-500 transition-colors duration-300"
+                >
                   {item}
                 </a>
               ))}
@@ -125,24 +127,24 @@ function Navbar({ darkMode, setDarkMode }) {
 
             <div className="flex items-center gap-5 mt-6">
                 <div className="relative w-10 h-10 flex items-center justify-center cursor-pointer">
-                    <FiHeart className="text-xl hover:text-red-600 transition" />
+                    <FiHeart className="text-xl text-slate-800 dark:text-slate-100 hover:text-red-600 dark:hover:text-red-500 transition" />
                     <span className="absolute top-0 right-0 bg-red-600 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
                         0
                     </span>
                 </div>
                 <div className="relative w-10 h-10 flex items-center justify-center cursor-pointer">
-                    <FiShoppingCart className="text-xl hover:text-red-600 transition" />
+                    <FiShoppingCart className="text-xl text-slate-800 dark:text-slate-100 hover:text-red-600 dark:hover:text-red-500 transition" />
                     <span className="absolute top-0 right-0 bg-red-600 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
                         0
                     </span>
                 </div>
                 <div className="w-10 h-10 flex items-center justify-center cursor-pointer">
-                    <FiUser className="text-xl hover:text-red-600 transition" />
+                    <FiUser className="text-xl text-slate-800 dark:text-slate-100 hover:text-red-600 dark:hover:text-red-500 transition" />
                 </div>
                 
                 <button
                     onClick={() => setDarkMode((prev) => !prev)}
-                    className="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center hover:scale-110 transition"
+                    className="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center hover:scale-110 transition-all duration-300"
                     >
                     {darkMode ? (
                         <FaSun className="text-yellow-400" />

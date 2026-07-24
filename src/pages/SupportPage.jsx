@@ -39,14 +39,22 @@ function SupportPage({
 
             <div className="flex items-center gap-3">
               <FiPhone className="text-blue-600 text-xl" />
-              <span className="dark:text-white">+91 1800-103-7799</span>
+                <a
+                    href="tel:+9101234567890"
+                    className="text-sky-600 hover:text-blue-700 underline underline-offset-4 transition"
+                >
+                    +91 0123-456-7890
+                </a>
             </div>
 
             <div className="flex items-center gap-3">
               <FiMail className="text-blue-600 text-xl" />
-              <span className="dark:text-white">
-                support@sony-demo.com
-              </span>
+                <a
+                    href="mailto:support@sony-demo.com"
+                    className="text-sky-600 hover:text-blue-700 underline underline-offset-4 transition"
+                >
+                    support@sony-demo.com
+                </a>
             </div>
 
             <div className="flex items-center gap-3">

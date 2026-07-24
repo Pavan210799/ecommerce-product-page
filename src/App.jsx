@@ -12,6 +12,8 @@ import SupportPage from "./pages/SupportPage";
 import HomePage from "./pages/HomePage";
 import { AnimatePresence } from "framer-motion";
 import OrderSuccessPage from "./pages/OrderSuccessPage";
+import AboutPage from "./pages/AboutPage";
+import ScrollToTop from "./components/ScrollToTop";
 
 
 function App() {
@@ -146,6 +148,8 @@ function App() {
 
   return (
     <>
+      <ScrollToTop />
+      
       <AnimatePresence mode="wait">
 
         <Routes
@@ -270,6 +274,17 @@ function App() {
                       wishlistItems={wishlistItems}
                       clearCart={clearCart}
                   />
+              }
+          />
+          <Route
+              path="/about"
+              element={
+                <AboutPage
+                  darkMode={darkMode}
+                  setDarkMode={setDarkMode}
+                  cartItems={cartItems}
+                  wishlistItems={wishlistItems}
+                />
               }
           />
 

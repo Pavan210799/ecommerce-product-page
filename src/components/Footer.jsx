@@ -1,9 +1,11 @@
 import {
-  FiFacebook,
-  FiInstagram,
-  FiTwitter,
-  FiYoutube,
-} from "react-icons/fi";
+  FaFacebook,
+  FaInstagram,
+  FaTwitter,
+  FaYoutube,
+} from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Footer() {
   return (
@@ -27,10 +29,22 @@ function Footer() {
             <h3 className="font-semibold mb-4">Shop</h3>
 
             <ul className="space-y-3 text-sm text-slate-500 dark:text-slate-400">
-              <li className="hover:text-red-600 cursor-pointer">Headphones</li>
-              <li className="hover:text-red-600 cursor-pointer">Earbuds</li>
-              <li className="hover:text-red-600 cursor-pointer">Speakers</li>
-              <li className="hover:text-red-600 cursor-pointer">Accessories</li>
+                <li>
+                    <Link
+                        to="/headphones"
+                        className="hover:text-blue-600 transition"
+                    >
+                        Headphones
+                    </Link>
+                </li>
+              < li>
+                    <Link
+                        to="/earbuds"
+                        className="hover:text-blue-600 transition"
+                    >
+                        Earbuds
+                    </Link>
+                </li>
             </ul>
           </div>
 
@@ -38,10 +52,14 @@ function Footer() {
             <h3 className="font-semibold mb-4">Support</h3>
 
             <ul className="space-y-3 text-sm text-slate-500 dark:text-slate-400">
-              <li className="hover:text-red-600 cursor-pointer">Help Center</li>
-              <li className="hover:text-red-600 cursor-pointer">Warranty</li>
-              <li className="hover:text-red-600 cursor-pointer">Track Order</li>
-              <li className="hover:text-red-600 cursor-pointer">Returns</li>
+              <li className="hover:text-red-600 cursor-pointer">
+                    <Link
+                        to="/support"
+                        className="hover:text-blue-600 transition"
+                    >
+                        Help Center
+                    </Link>
+              </li>
             </ul>
           </div>
 
@@ -49,10 +67,14 @@ function Footer() {
             <h3 className="font-semibold mb-4">Company</h3>
 
             <ul className="space-y-3 text-sm text-slate-500 dark:text-slate-400">
-              <li className="hover:text-red-600 cursor-pointer">About Us</li>
-              <li className="hover:text-red-600 cursor-pointer">Careers</li>
-              <li className="hover:text-red-600 cursor-pointer">Privacy Policy</li>
-              <li className="hover:text-red-600 cursor-pointer">Terms & Conditions</li>
+              <li className="hover:text-red-600 cursor-pointer">
+                <Link
+                    to="/about"
+                    className="hover:text-blue-600 transition"
+                >
+                    About Us
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -60,10 +82,30 @@ function Footer() {
             <h3 className="font-semibold mb-4">Follow Us</h3>
 
             <div className="flex gap-4 text-xl">
-              <FiFacebook className="cursor-pointer hover:text-red-600 transition" />
-              <FiInstagram className="cursor-pointer hover:text-red-600 transition" />
-              <FiTwitter className="cursor-pointer hover:text-red-600 transition" />
-              <FiYoutube className="cursor-pointer hover:text-red-600 transition" />
+                <button
+                    onClick={() => toast.info("Facebook page coming soon.")}
+                    className="hover:text-blue-600 transition"
+                >
+                    <FaFacebook />
+                </button>
+                <button
+                    onClick={() => toast.info("Instagram page coming soon.")}
+                    className="hover:text-pink-500 transition"
+                >
+                    <FaInstagram />
+                </button>
+                <button
+                    onClick={() => toast.info("X page coming soon.")}
+                    className="hover:text-sky-500 transition"
+                >
+                    <FaTwitter />
+                </button>
+                <button
+                    onClick={() => toast.info("YouTube channel coming soon.")}
+                    className="hover:text-red-600 transition"
+                >
+                    <FaYoutube />
+                </button>
             </div>
           </div>
 
